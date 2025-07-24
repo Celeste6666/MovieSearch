@@ -1,56 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/itemRoot"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="12dp">
 
-    <!-- Title -->
     <TextView
         android:id="@+id/textViewTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Title"
-        android:textSize="18sp"
+        android:text="Movie Title"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="18sp"
         app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Director -->
     <TextView
         android:id="@+id/textViewDirector"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Director:"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="Director: Christopher Nolan"
         app:layout_constraintTop_toBottomOf="@id/textViewTitle"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="4dp" />
 
-    <!-- Rating -->
     <TextView
         android:id="@+id/textViewRating"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Rating:"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="IMDb Rating: 8.9"
         app:layout_constraintTop_toBottomOf="@id/textViewDirector"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="4dp" />
 
-    <!-- Year -->
     <TextView
         android:id="@+id/textViewYear"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Year:"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="Year: 2020"
         app:layout_constraintTop_toBottomOf="@id/textViewRating"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="6dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
