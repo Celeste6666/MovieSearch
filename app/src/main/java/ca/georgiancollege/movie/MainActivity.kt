@@ -1,6 +1,7 @@
 package ca.georgiancollege.movie
 
 import MovieAdapter
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -33,6 +34,15 @@ class MainActivity : AppCompatActivity() {
         movieAdapter = MovieAdapter(movies) { movie ->
             Toast.makeText(this, "you click：${movie.title}", Toast.LENGTH_SHORT).show()
             // direct to MovieDetailsActivity
+            val intent = Intent(this, MovieDetailsActivity::class.java).apply {
+                putExtra("title", movie.title)
+                putExtra("director", movie.director)
+                putExtra("rating", movie.rating)
+                putExtra("year", movie.year)
+                putExtra("description", movie.description)
+                putExtra("posterUrl", movie.posterUrl)
+            }
+            startActivity(intent)
         }
         binding.recyclerViewMovies.layoutManager = LinearLayoutManager(this)
         binding.recyclerViewMovies.adapter = movieAdapter
@@ -71,7 +81,6 @@ class MainActivity : AppCompatActivity() {
                             val item = searchArray.getJSONObject(i)
                             val imdbID = item.getString("imdbID")
 
-                            // 再用 imdbID 查一次單一電影細節
                             val detailsUrl = "https://www.omdbapi.com/?apikey=$apiKey&i=$imdbID"
                             val detailsConnection = URL(detailsUrl).openConnection() as HttpURLConnection
                             detailsConnection.requestMethod = "GET"
@@ -85,7 +94,9 @@ class MainActivity : AppCompatActivity() {
                                 title = detailsJson.optString("Title", "N/A"),
                                 director = detailsJson.optString("Director", "N/A"),
                                 rating = detailsJson.optString("imdbRating", "N/A"),
-                                year = detailsJson.optString("Year", "N/A")
+                                year = detailsJson.optString("Year", "N/A"),
+                                posterUrl = detailsJson.optString("Poster", ""),
+                                description = detailsJson.optString("Plot", "No description")
                             )
 
                             movieList.add(movie)
@@ -98,15 +109,15 @@ class MainActivity : AppCompatActivity() {
                         }
                     } else {
                         runOnUiThread {
-                            Toast.makeText(this@MainActivity, "沒有找到結果", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@MainActivity, "no result", Toast.LENGTH_SHORT).show()
                         }
                     }
 
                 }
             } catch (e: Exception) {
-                Log.e("searchResults", "錯誤: ${e.message}")
+                Log.e("searchResults", "error: ${e.message}")
                 runOnUiThread {
-                    Toast.makeText(this@MainActivity, "錯誤: ${e.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, "error: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
             }
         }

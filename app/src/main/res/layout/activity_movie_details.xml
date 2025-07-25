@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- 電影海報 -->
         <ImageView
             android:id="@+id/Poster"
             android:layout_width="match_parent"
@@ -17,7 +16,6 @@
             android:scaleType="fitCenter"
             android:contentDescription="poster" />
 
-        <!-- 電影標題 -->
         <TextView
             android:id="@+id/Title"
             android:layout_width="match_parent"
@@ -27,16 +25,14 @@
             android:textStyle="bold"
             android:layout_marginTop="16dp" />
 
-        <!-- 製作公司 -->
         <TextView
-            android:id="@+id/Studio"
+            android:id="@+id/Director"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Studio: "
+            android:text="Director: "
             android:textSize="16sp"
             android:layout_marginTop="8dp" />
 
-        <!-- 評分 -->
         <TextView
             android:id="@+id/Rating"
             android:layout_width="match_parent"
@@ -45,7 +41,6 @@
             android:textSize="16sp"
             android:layout_marginTop="4dp" />
 
-        <!-- 年份 -->
         <TextView
             android:id="@+id/Year"
             android:layout_width="match_parent"
@@ -54,7 +49,6 @@
             android:textSize="16sp"
             android:layout_marginTop="4dp" />
 
-        <!-- 描述 -->
         <TextView
             android:id="@+id/Description"
             android:layout_width="match_parent"
@@ -63,7 +57,6 @@
             android:textSize="16sp"
             android:layout_marginTop="12dp" />
 
-        <!-- 返回按鈕 -->
         <Button
             android:id="@+id/btnBack"
             android:layout_width="wrap_content"
