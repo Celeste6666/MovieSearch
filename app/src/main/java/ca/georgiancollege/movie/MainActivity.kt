@@ -4,6 +4,7 @@ import MovieAdapter
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +21,8 @@ import com.google.firebase.auth.FirebaseAuth
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var movieAdapter: MovieAdapter
+
+    private val auth = FirebaseAuth.getInstance()
     private val movies = mutableListOf<Movie>()
 
     private val apiKey = "aeb47a88"
@@ -33,6 +36,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         enableEdgeToEdge()
 
+
+        val user = auth.currentUser
+        binding.movieFavoriteDirect.visibility = if (user != null) View.VISIBLE else View.GONE
+        binding.buttonLogout.visibility = if (user != null) View.VISIBLE else View.GONE
+        binding.buttonLogin.visibility = if (user != null) View.GONE else View.VISIBLE
 
         movieAdapter = MovieAdapter(movies) { movie ->
             Toast.makeText(this, "you click：${movie.title}", Toast.LENGTH_SHORT).show()
@@ -60,8 +68,20 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        binding.movieFavoriteDirect.setOnClickListener {
+            startActivity(Intent(this, FavoriteListActivity::class.java)) // redirect to Login page
+        }
+
         binding.buttonLogin.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java)) // redirect to Login page
+        }
+
+        binding.buttonLogout.setOnClickListener {
+            auth.signOut()
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
         }
     }
 

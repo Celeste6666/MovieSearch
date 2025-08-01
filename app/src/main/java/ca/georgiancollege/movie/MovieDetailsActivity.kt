@@ -1,35 +1,52 @@
 package ca.georgiancollege.movie
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import ca.georgiancollege.movie.databinding.ActivityMovieDetailsBinding
 import com.squareup.picasso.Picasso
+import com.google.firebase.auth.FirebaseAuth
+import android.view.View
+import android.widget.Toast
+import com.google.firebase.firestore.FirebaseFirestore
 
 class MovieDetailsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMovieDetailsBinding
+    private val auth = FirebaseAuth.getInstance()
+    private val firestore = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMovieDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val movieTitle = intent.getStringExtra("title") ?: ""
-        val movieDirector = intent.getStringExtra("director") ?: ""
-        val movieRating = intent.getStringExtra("rating") ?: ""
-        val movieYear = intent.getStringExtra("year") ?: ""
-        val movieDescription = intent.getStringExtra("description") ?: ""
-        val moviePosterUrl = intent.getStringExtra("posterUrl") ?: ""
+        val user = auth.currentUser
+        binding.buttonAddFavorite.visibility = if (user != null) View.VISIBLE else View.GONE
+        binding.movieFavoriteDirect.visibility = if (user != null) View.VISIBLE else View.GONE
+        binding.buttonLogin.visibility = if (user != null) View.GONE else View.VISIBLE
+        binding.buttonLogout.visibility = if (user != null) View.VISIBLE else View.GONE
 
-        binding.Title.text = movieTitle
-        binding.Director.text = "Director: $movieDirector"
-        binding.Rating.text = "Rating: $movieRating"
-        binding.Year.text = "Year: $movieYear"
-        binding.Description.text = movieDescription
+        val movie = Movie(
+            title = intent.getStringExtra("title") ?: "",
+            director = intent.getStringExtra("director") ?: "",
+            rating = intent.getStringExtra("rating") ?: "",
+            year = intent.getStringExtra("year") ?: "",
+            description = intent.getStringExtra("description") ?: "",
+            posterUrl = intent.getStringExtra("posterUrl") ?: "",
+            imdbID = intent.getStringExtra("imdbID") ?: ""
+        )
 
-        if (moviePosterUrl.isNotEmpty()) {
+
+        binding.Title.text = movie.title
+        binding.Director.text = "Director: ${movie.director}"
+        binding.Rating.text = "Rating: ${movie.rating}"
+        binding.Year.text = "Year: ${movie.year}"
+        binding.Description.text = movie.description
+
+        if (movie.posterUrl.isNotEmpty()) {
             Picasso.get()
-                .load(moviePosterUrl)
+                .load(movie.posterUrl)
                 .into(binding.Poster)
         }else {
             binding.Poster.setImageDrawable(null)
@@ -37,6 +54,38 @@ class MovieDetailsActivity : AppCompatActivity() {
 
         binding.btnBack.setOnClickListener {
             finish()
+        }
+
+        binding.movieFavoriteDirect.setOnClickListener {
+            startActivity(Intent(this, FavoriteListActivity::class.java)) // redirect to Login page
+        }
+
+        binding.buttonLogin.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java)) // redirect to Login page
+        }
+
+        binding.buttonLogout.setOnClickListener {
+            auth.signOut()
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+        }
+
+        binding.buttonAddFavorite.setOnClickListener {
+            if (user != null) {
+                firestore.collection("favorites")
+                    .document(user.uid)
+                    .collection("movies")
+                    .document(movie.imdbID)
+                    .set(movie)
+                    .addOnSuccessListener {
+                        Toast.makeText(this, "Add to my favorite successfully", Toast.LENGTH_SHORT).show()
+                    }
+                    .addOnFailureListener { e ->
+                        Toast.makeText(this, "Add failed: ${e.message}", Toast.LENGTH_SHORT).show()
+                    }
+            }
         }
     }
 }
