@@ -12,6 +12,13 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp">
+        <Button
+            android:id="@+id/buttonLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login"
+            android:layout_gravity="end"
+            android:layout_marginBottom="16dp" />
 
         <EditText
             android:id="@+id/editTextSearch"

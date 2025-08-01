@@ -15,6 +15,7 @@ import kotlinx.coroutines.launch
 import org.json.JSONObject
 import java.net.HttpURLConnection
 import java.net.URL
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -26,6 +27,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         enableEdgeToEdge()
@@ -55,6 +58,10 @@ class MainActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Enter the keyword...", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        binding.buttonLogin.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java)) // redirect to Login page
         }
     }
 
