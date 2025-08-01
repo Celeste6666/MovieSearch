@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "you click：${movie.title}", Toast.LENGTH_SHORT).show()
             // direct to MovieDetailsActivity
             val intent = Intent(this, MovieDetailsActivity::class.java).apply {
+                putExtra("imdbID", movie.imdbID)
                 putExtra("title", movie.title)
                 putExtra("director", movie.director)
                 putExtra("rating", movie.rating)
@@ -115,7 +116,6 @@ class MainActivity : AppCompatActivity() {
 
                             val detailsResponse = detailsConnection.inputStream.bufferedReader().use { it.readText() }
                             val detailsJson = JSONObject(detailsResponse)
-
                             val movie = Movie(
                                 imdbID = imdbID,
                                 title = detailsJson.optString("Title", "N/A"),
