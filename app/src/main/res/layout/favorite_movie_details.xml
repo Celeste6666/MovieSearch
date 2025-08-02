@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Custom Navbar with ConstraintLayout -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/customNavbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/purple_500"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/movieDirect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Movies"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <TextView
+                android:id="@+id/movieFavoriteDirect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Favorites"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintStart_toEndOf="@id/movieDirect"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/buttonLogin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Login"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+            <Button
+                android:id="@+id/buttonLogout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Logout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Content -->
+        <ImageView
+            android:id="@+id/Poster"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:scaleType="fitCenter"
+            android:contentDescription="poster"
+            android:layout_marginTop="50dp"/>
+
+        <TextView
+            android:id="@+id/Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Movie Title"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:id="@+id/Director"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Director: "
+            android:textSize="16sp"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/Rating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rating: "
+            android:textSize="16sp"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:id="@+id/Year"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Year: "
+            android:textSize="16sp"
+            android:layout_marginTop="4dp" />
+
+        <TextView
+            android:id="@+id/Description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Description goes here..."
+            android:textSize="16sp"
+            android:layout_marginTop="12dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="start">
+
+            <Button
+                android:id="@+id/buttonEdit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Edit"
+                android:backgroundTint="@color/success"
+                android:textColor="@color/black"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/buttonDelete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Delete"
+                android:backgroundTint="@android:color/holo_red_dark"
+                android:textColor="@color/white"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:layout_marginTop="24dp" />
+    </LinearLayout>
+</ScrollView>

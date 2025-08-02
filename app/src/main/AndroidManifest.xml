@@ -26,6 +26,8 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".FavoriteListActivity" />
+        <activity android:name=".FavoriteMovieDetailsActivity" />
+        <activity android:name=".FavoriteEditMovieActivity" />
     </application>
 
 </manifest>

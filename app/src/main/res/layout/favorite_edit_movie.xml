@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Custom Navbar -->
+        <LinearLayout
+            android:id="@+id/customNavbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/purple_500"
+            android:padding="8dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/movieDirect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Movies"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/movieFavoriteDirect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Favorites"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:layout_marginStart="16dp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/buttonLogout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Logout" />
+        </LinearLayout>
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Movie Title"
+            android:layout_marginTop="30dp"/>
+        <EditText
+            android:id="@+id/editTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Title" />
+
+        <!-- Year -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Release Year" />
+        <EditText
+            android:id="@+id/editYear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Year" />
+
+        <!-- Director -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Director" />
+        <EditText
+            android:id="@+id/editDirector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Director" />
+
+        <!-- Rating -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Critics Rating" />
+        <EditText
+            android:id="@+id/editRating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Rating" />
+
+        <!-- Description -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Description" />
+        <EditText
+            android:id="@+id/editDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Description"
+            android:minLines="3"
+            android:gravity="top" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="start">
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="update"
+            android:layout_marginEnd="16dp"/>
+
+        <Button
+            android:id="@+id/buttonCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel" />
+    </LinearLayout>
+    </LinearLayout>
+</ScrollView>

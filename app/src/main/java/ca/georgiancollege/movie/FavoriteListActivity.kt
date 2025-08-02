@@ -35,13 +35,14 @@ class FavoriteListActivity : AppCompatActivity() {
 
     private fun setupRecyclerView() {
         adapter = FavoriteAdapter(movieList) { selectedMovie ->
-            val intent = Intent(this, MovieDetailsActivity::class.java).apply {
-                putExtra("MOVIE_TITLE", selectedMovie.title)
-                putExtra("MOVIE_DIRECTOR", selectedMovie.director)
-                putExtra("MOVIE_RATING", selectedMovie.rating)
-                putExtra("MOVIE_YEAR", selectedMovie.year)
-                putExtra("MOVIE_DESCRIPTION", selectedMovie.description)
-                putExtra("MOVIE_POSTER_URL", selectedMovie.posterUrl)
+            val intent = Intent(this, FavoriteMovieDetailsActivity::class.java).apply {
+                putExtra("imdbID", selectedMovie.imdbID)
+                putExtra("title", selectedMovie.title)
+                putExtra("director", selectedMovie.director)
+                putExtra("rating", selectedMovie.rating)
+                putExtra("year", selectedMovie.year)
+                putExtra("description", selectedMovie.description)
+                putExtra("posterUrl", selectedMovie.posterUrl)
             }
             startActivity(intent)
         }
