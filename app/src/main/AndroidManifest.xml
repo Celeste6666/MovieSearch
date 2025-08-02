@@ -25,6 +25,7 @@
         <activity android:name=".MovieDetailsActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
+        <activity android:name=".FavoriteListActivity" />
     </application>
 
 </manifest>
