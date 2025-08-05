@@ -31,6 +31,7 @@ class FavoriteListActivity : AppCompatActivity() {
             finish()
         }
 
+
     }
 
     private fun setupRecyclerView() {

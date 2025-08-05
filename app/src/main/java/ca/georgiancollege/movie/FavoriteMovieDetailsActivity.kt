@@ -100,6 +100,8 @@ class FavoriteMovieDetailsActivity : AppCompatActivity() {
                     .delete()
                     .addOnSuccessListener {
                         Toast.makeText(this, "Deleted successfully", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this, FavoriteListActivity::class.java))
+                        finish()
                     }
                     .addOnFailureListener { e ->
                         Toast.makeText(this, "Delete failed: ${e.message}", Toast.LENGTH_SHORT).show()

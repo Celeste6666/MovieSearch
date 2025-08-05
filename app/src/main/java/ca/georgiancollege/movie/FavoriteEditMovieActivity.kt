@@ -30,6 +30,7 @@ class FavoriteEditMovieActivity : AppCompatActivity() {
         isEditMode = movieId != null && movieId != ""
 
         Log.d("EditPage", "Received imdbID: $movieId")
+        loadMovieData()
 
         binding.buttonSave.setOnClickListener {
             saveMovieData()
@@ -84,12 +85,13 @@ class FavoriteEditMovieActivity : AppCompatActivity() {
         var movieId = movieId ?: "$title$year"
 
         var movieData = Movie(
+            imdbID = movieId,
             title,
             director,
             rating,
             year,
-            description,
             posterUrl,
+            description
         )
 
         firestore.collection("favorites")
@@ -99,6 +101,7 @@ class FavoriteEditMovieActivity : AppCompatActivity() {
             .set(movieData)
             .addOnSuccessListener {
                 Toast.makeText(this, "Movie saved", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this, FavoriteListActivity::class.java))
                 finish()
             }
             .addOnFailureListener {

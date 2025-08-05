@@ -31,28 +31,6 @@ class FavoriteAdapter(
         holder.binding.root.setOnClickListener {
             onItemClick(movie)
         }
-        holder.binding.buttonDelete.setOnClickListener {
-            val firestore = FirebaseFirestore.getInstance()
-            val user = FirebaseAuth.getInstance().currentUser
-
-            if(user != null){
-                firestore.collection("favorites")
-                    .document(user.uid)
-                    .collection("movies")
-                    .document(movie.imdbID)
-                    .delete()
-                    .addOnSuccessListener {
-                        Toast.makeText(holder.binding.root.context, "Deleted successfully", Toast.LENGTH_SHORT).show()
-                        // remove item
-                        movies.removeAt(position)
-                        notifyItemRemoved(position)
-                        notifyItemRangeChanged(position, movies.size - position)
-                    }
-                    .addOnFailureListener { e ->
-                        Toast.makeText(holder.binding.root.context, "Delete failed: ${e.message}", Toast.LENGTH_SHORT).show()
-                    }
-            }
-        }
     }
 
     override fun getItemCount() = movies.size
